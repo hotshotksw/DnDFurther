@@ -19,7 +19,9 @@ namespace DnD_Further.Models
 
         public enum Clases
         {
-
+            Fighter,
+            Paladin,
+            Druid
         }
 
 
