@@ -17,6 +17,11 @@ namespace DnD_Further.Models
             Tiefling
         }
 
+        public enum Clases
+        {
+
+        }
+
 
         [Key]
         public int Id { get; set; }
