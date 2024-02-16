@@ -1,8 +1,9 @@
+using DnD_Further.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
-public class CharacterController : CharacterController
+public class CharacterController : Controller
 {
     private readonly HttpClient _httpClient;
 
@@ -12,7 +13,7 @@ public class CharacterController : CharacterController
         _httpClient.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
     }
 
-    public async Task<ActionResult> Create()
+    public async Task<IActionResult> Create()
     {
         var racesResponse = await _httpClient.GetAsync("races");
         var races = await racesResponse.Content.ReadAsAsync<IEnumerable<string>>();
@@ -29,7 +30,7 @@ public class CharacterController : CharacterController
 
     }
 
-    public async Task<ActionResult> Create(Character character)
+    public async Task<IActionResult> Create(Character character)
     {
         return RedirectToAction("Index", "Home");
     }

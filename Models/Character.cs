@@ -17,7 +17,7 @@ namespace DnD_Further.Models
             Tiefling
         }
 
-        public enum Clases
+        public enum Classes
         {
             Fighter,
             Paladin,
