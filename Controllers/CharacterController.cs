@@ -2,6 +2,7 @@ using DnD_Further.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 public class CharacterController : Controller
 {
@@ -11,6 +12,8 @@ public class CharacterController : Controller
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+        //_httpClient.DefaultRequestHeaders.Accept.Clear();
+        //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
     public async Task<IActionResult> Create()
