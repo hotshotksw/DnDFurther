@@ -16,6 +16,8 @@ public class CharacterController : Controller
         //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
+    //hello there
+
     public async Task<IActionResult> Create()
     {
         var racesResponse = await _httpClient.GetAsync("races");
