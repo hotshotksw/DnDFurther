@@ -19,9 +19,18 @@ namespace DnD_Further.Models
 
         public enum Classes
         {
-            Fighter,
-            Paladin,
-            Druid
+            BARBARIAN,
+            BARD,
+            CLERIC,
+            DRUID,
+            FIGHTER,
+            MONK,
+            PALADIN,
+            RANGER,
+            ROUGE,
+            SORCERER,
+            WARLOCK,
+            WIZARD
         }
 
 
