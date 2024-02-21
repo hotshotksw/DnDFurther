@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 public class CharacterController : Controller
 {
@@ -13,6 +14,31 @@ public class CharacterController : Controller
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+    }
+
+    public IActionResult CharacterViewer()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult TempCreator()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult TempCreator(Character c)
+    {
+
+        if (ModelState.IsValid)
+        {
+            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //dal.AddGame(g, userID);
+            return RedirectToAction("CharacterViewer", "Character");
+        }
+
+        return View();
     }
 
     public async Task<IActionResult> GetSpell()

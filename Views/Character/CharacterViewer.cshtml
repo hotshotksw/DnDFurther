@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Character>
+
+<div class="text-center">
+<h1 class="display-4" style="text-decoration:underline;font-size:80px;">THE PLANES</h1>
+</div>
+
+@if (Model == null || Model.Count() == 0)
+{
+	<h2>Sorry! No character available</h2>
+}
+else
+{
+	<h4>@TempData["Success"]</h4>
+
+	<form class="d-flex mb-4" asp-controller="Game" asp-action="Search" method="post">
+		<input name="key" class="form-control me-2" type="search" placeholder="Search" />
+		<button class="btn btn-secondary my-2" type="submit">Search</button>
+	</form>
+	<form asp-controller="Game" asp-action="Filter" method="post">
+		<input name="Rating" placeholder="Rating" />
+		<input name="Genre" placeholder="Genre" />
+		<button type="submit" class="btn btn-warning">Filter</button>
+	</form>
+
+	<div class="row" style="background-color:dimgrey">
+		@foreach (Character c in Model)
+		{
+		<div class="col col-4">
+			<partial name="_GamePartialView.cshtml" for="@g" />
+		</div>
+		}
+	</div>
+}
