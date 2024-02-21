@@ -36,6 +36,8 @@ namespace DnD_Further.Models
 
         [Key]
         public int Id { get; set; }
+        [MaxLength(450)]
+        public string? UserID { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]

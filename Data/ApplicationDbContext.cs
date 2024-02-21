@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DnD_Further.Models;
 
 namespace DnD_Further.Data
 {
@@ -9,5 +10,7 @@ namespace DnD_Further.Data
 			: base(options)
 		{
 		}
-	}
+
+        public DbSet<Character> Characters { get; set; }
+    }
 }

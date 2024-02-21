@@ -5,15 +5,20 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using DnD_Further.Interfaces;
 
 public class CharacterController : Controller
 {
     private readonly HttpClient _httpClient;
 
-    public CharacterController()
+    IDataAccessLayer dal;
+
+    public CharacterController(IDataAccessLayer indal)
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+
+        dal = indal;
     }
 
     public IActionResult CharacterViewer()
@@ -34,7 +39,7 @@ public class CharacterController : Controller
         if (ModelState.IsValid)
         {
             string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //dal.AddGame(g, userID);
+            dal.AddCharacter(c, userID);
             return RedirectToAction("CharacterViewer", "Character");
         }
 

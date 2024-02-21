@@ -1,4 +1,5 @@
 using DnD_Further.Data;
+using DnD_Further.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,11 @@ namespace DnD_Further
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 			builder.Services.AddControllersWithViews();
 
-			var app = builder.Build();
+            builder.Services.AddTransient<IDataAccessLayer, CharacterListDAL>();
+
+            builder.Services.AddRazorPages();
+
+            var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
