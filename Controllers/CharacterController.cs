@@ -23,7 +23,7 @@ public class CharacterController : Controller
 
     public IActionResult CharacterViewer()
     {
-        return View();
+        return View(dal.GetCharacters());
     }
 
     [HttpGet]

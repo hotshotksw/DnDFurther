@@ -16,17 +16,12 @@ else
 		<input name="key" class="form-control me-2" type="search" placeholder="Search" />
 		<button class="btn btn-secondary my-2" type="submit">Search</button>
 	</form>
-	<form asp-controller="Game" asp-action="Filter" method="post">
-		<input name="Rating" placeholder="Rating" />
-		<input name="Genre" placeholder="Genre" />
-		<button type="submit" class="btn btn-warning">Filter</button>
-	</form>
 
 	<div class="row" style="background-color:dimgrey">
 		@foreach (Character c in Model)
 		{
 		<div class="col col-4">
-			<partial name="_GamePartialView.cshtml" for="@c" />
+			<partial name="_CharacterPartialView.cshtml" for="@c" />
 		</div>
 		}
 	</div>
