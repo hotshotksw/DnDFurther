@@ -70,4 +70,24 @@ public class CharacterController : Controller
             return View("Error");
         }
     }
+
+    #region EDIT/DELETE/SEARCH FAKE FUNCTIONS
+
+    
+
+    public IActionResult Edit()
+    {
+        return RedirectToAction("Index", "Home");
+    }
+    
+    public IActionResult Delete()
+    {
+        return RedirectToAction("Index", "Home");
+    }
+    
+    public IActionResult Search()
+    {
+        return RedirectToAction("Index", "Home");
+    }
+    #endregion
 }
