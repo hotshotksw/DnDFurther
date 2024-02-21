@@ -15,11 +15,18 @@
 			<span asp-validation-for="Name" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
-			<label asp-for="RaceType"></label>
+			<label asp-for="RaceType">Race</label>
 			<select asp-for="RaceType" asp-items="Html.GetEnumSelectList<Character.Races>()">
 				<option selected="selected" value="">Please select</option>
 			</select>
 			<span asp-validation-for="RaceType" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="ClassType">Class</label>
+			<select asp-for="ClassType" asp-items="Html.GetEnumSelectList<Character.Classes>()">
+				<option selected="selected" value="">Please select</option>
+			</select>
+			<span asp-validation-for="ClassType" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="Strength"></label>
