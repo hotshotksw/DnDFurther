@@ -40,8 +40,8 @@ namespace DnD_Further.Models
         public string? UserID { get; set; }
         [Required]
         public string? Name { get; set; }
-        [Required]
-        public Races Race { get; set; }
+        [Required, EnumDataType(typeof(Races))]
+        public Races RaceType { get; set; }
         [Required, Range(1, 20)]
         public int Strength { get; set; }
         [Required, Range(1, 20)]
@@ -60,7 +60,7 @@ namespace DnD_Further.Models
         public Character(string name, Races race, int str, int dex, int con, int intl, int wis, int cha)
         {
             this.Name = name;
-            this.Race = race;
+            this.RaceType = race;
             this.Strength = str;
             this.Dexterity = dex;
             this.Constitution = con;
