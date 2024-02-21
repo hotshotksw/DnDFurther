@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 public class CharacterController : Controller
 {
@@ -12,29 +13,30 @@ public class CharacterController : Controller
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
-        //_httpClient.DefaultRequestHeaders.Accept.Clear();
-        //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> GetSpell()
     {
-        var racesResponse = await _httpClient.GetAsync("races");
-        var races = await racesResponse.Content.ReadAsAsync<IEnumerable<string>>();
+        // Specify the spell you want to retrieve, for example, "acid-arrow"
+        string spellName = "acid-arrow";
 
-        var classesResponse = await _httpClient.GetAsync("classes");
-        var classes = await classesResponse.Content.ReadAsAsync<IEnumerable<string>>();
+        // Make GET request to fetch spell information
+        HttpResponseMessage response = await _httpClient.GetAsync($"spells/{spellName}");
 
-        var model = new CharacterViewModel
+        if (response.IsSuccessStatusCode)
         {
-            Races = races,
-            Classes = classes
-        };
-        return View(model);
-    }
+            // Deserialize the response content to your model
+            string json = await response.Content.ReadAsStringAsync();
+            var spell = JsonConvert.DeserializeObject<SpellModel>(json);
 
-    public async Task<IActionResult> Create(Character character)
-    {
-        return RedirectToAction("Index", "Home");
+            // Now 'spell' contains information about the specified spell
+            // You can pass 'spell' to your view or do further processing
+            return View(spell);
+        }
+        else
+        {
+            // Handle error here
+            return View("Error");
+        }
     }
 }
