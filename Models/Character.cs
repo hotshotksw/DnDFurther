@@ -27,7 +27,7 @@ namespace DnD_Further.Models
             Monk,
             Paladin,
             Ranger,
-            Rouge,
+            Rogue,
             Sorcerer,
             Warlock,
             Wizard
