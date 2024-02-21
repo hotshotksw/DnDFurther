@@ -19,18 +19,18 @@ namespace DnD_Further.Models
 
         public enum Classes
         {
-            BARBARIAN,
-            BARD,
-            CLERIC,
-            DRUID,
-            FIGHTER,
-            MONK,
-            PALADIN,
-            RANGER,
-            ROUGE,
-            SORCERER,
-            WARLOCK,
-            WIZARD
+            Barbarian,
+            Bard,
+            Cleric,
+            Druid,
+            Fighter,
+            Monk,
+            Paladin,
+            Ranger,
+            Rouge,
+            Sorcerer,
+            Warlock,
+            Wizard
         }
 
 
@@ -42,6 +42,8 @@ namespace DnD_Further.Models
         public string? Name { get; set; }
         [Required, EnumDataType(typeof(Races))]
         public Races RaceType { get; set; }
+        [Required, EnumDataType(typeof(Classes))]
+        public Classes ClassType { get; set; }
         [Required, Range(1, 20)]
         public int Strength { get; set; }
         [Required, Range(1, 20)]
@@ -57,10 +59,11 @@ namespace DnD_Further.Models
 
         public Character() { }
 
-        public Character(string name, Races race, int str, int dex, int con, int intl, int wis, int cha)
+        public Character(string name, Races race, Classes classes, int str, int dex, int con, int intl, int wis, int cha)
         {
             this.Name = name;
             this.RaceType = race;
+            this.ClassType = classes;
             this.Strength = str;
             this.Dexterity = dex;
             this.Constitution = con;
