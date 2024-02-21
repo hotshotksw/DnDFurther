@@ -46,6 +46,30 @@ public class CharacterController : Controller
         return View();
     }
 
+    [HttpGet]
+    public IActionResult Creator()
+    {
+        if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View(new Character());
+    }
+
+    [HttpPost]
+    public IActionResult Creator(Character c)
+    {
+        
+        if (ModelState.IsValid)
+        {
+            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            dal.AddCharacter(c, userID);
+            return RedirectToAction("CharacterViewer", "Character");
+        }
+
+        return View(c);
+    }
+    
     public async Task<IActionResult> GetSpell()
     {
         // Specify the spell you want to retrieve, for example, "acid-arrow"
@@ -71,6 +95,18 @@ public class CharacterController : Controller
         }
     }
 
+    public IActionResult ChangeStat(Character c, string statToChange, int amount)
+    {
+        switch (statToChange)
+        {
+            case "strength":
+                c.Strength += amount;
+                break;
+        }
+        return RedirectToAction("Creator");
+    }
+    
+    
     #region EDIT/DELETE/SEARCH FAKE FUNCTIONS
 
     

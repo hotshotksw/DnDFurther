@@ -1,0 +1,148 @@
+@model Character
+
+
+@{ int Str = 5;}
+@{ int Dex = 0;}
+@{ int Con = 0;}
+@{ int Int = 0;}
+@{ int Wis = 0;}
+@{ int Cha = 0;}
+
+<form asp-controller="Character" asp-action="Creator" method="post">
+
+    <div class="row">
+        <div class="col-4 align-content-start">
+            @* this is where the character picture goes *@
+            <img src="~/Images/CharacterBuilder/PlaceholdCharacter.jpg" height="600"/>
+
+        </div>
+
+        <div class="col-8 text-center">
+            @* This is where all the stuff on the right goes *@
+            <div class="row py-4">
+                <div class="col-4">
+                    <label style="background-image: url(../wwwroot/Images/CharacterBuilder/LevelLayer.png);">
+                        level 1
+                    </label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control med-input" asp-for="Name" placeholder="Name" title="Put your character name here"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row py-3">
+                <div class="col-4 text-center">
+                    <select class="med-input" asp-for="RaceType" asp-items="Html.GetEnumSelectList<Character.Races>()">
+                        <option selected="selected" value="">Please select race</option>
+                    </select>
+                    <span asp-validation-for="RaceType" class="text-danger"></span>
+                </div>
+                <div class="col-4 text-center">
+                    <select class="med-input" asp-for="ClassType" asp-items="Html.GetEnumSelectList<Character.Classes>()">
+                        <option selected="selected" value="">Please select class</option>
+                    </select>
+                    <span asp-validation-for="ClassType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row py-2" oninput="">
+                <div class="col-2">
+                    <input asp-for="Strength" class="form-control big-input" min="1" max="20" oninput="@{ Str = CheckStat(Model.Strength);}"/>
+                </div>
+                <div class="col-2 text-start" oninput="@{ Str = CheckStat(Model.Strength);}">
+                    @{ Str = CheckStat(Model.Strength); }
+                    <div>@Str.ToString() Saving Throws</div>
+                    <div>@Str.ToString() Athletics</div>
+                </div>
+                
+                <div class="col-2">
+                    <input asp-for="Dexterity" class="form-control big-input" min="1" max="20"/>
+                </div>
+                <div class="col-2 text-start">
+                    @{ Dex = CheckStat(Model.Dexterity); }
+                    <div>@Dex.ToString() Saving Throws</div>
+                    <div>@Dex.ToString() Acrobatics</div>
+                    <div>@Dex.ToString() Sleight of Hand</div>
+                    <div>@Dex.ToString() Stealth</div>
+                </div>
+            </div>
+            
+            
+            <div class="row py-2">
+                <div class="col-2 text-start">
+                    <input asp-for="Constitution" class="form-control big-input" min="1" max="20"/>
+                </div>
+                <div class="col-2">
+                    @{ Con = CheckStat(Model.Constitution);}
+                    <div>@Con.ToString() Saving Throws</div>
+                </div>
+                            
+                <div class="col-2">
+                    <input asp-for="Intelligence" class="form-control big-input" min="1" max="20"/>
+                </div>
+                <div class="col-2 text-start">
+                    @{ Int = CheckStat(Model.Intelligence);}
+                    <div>@Int.ToString() Saving Throws</div>
+                    <div>@Int.ToString() Arcana</div>
+                    <div>@Int.ToString() History</div>
+                    <div>@Int.ToString() Investigation</div>
+                    <div>@Int.ToString() Nature</div>
+                    <div>@Int.ToString() Religion</div>
+                </div>
+            </div>
+            
+            <div class="row py-2">
+                <div class="col-2">
+                    <input asp-for="Wisdom" class="form-control big-input" min="1" max="20"/>
+                </div>
+                <div class="col-2 text-start">
+                    @{ Wis = CheckStat(Model.Wisdom);}
+                    <div>@Wis.ToString() Saving Throws</div>
+                    <div>@Wis.ToString() Animal Handling</div>
+                    <div>@Wis.ToString() Insight</div>
+                    <div>@Wis.ToString() Medicine</div>
+                    <div>@Wis.ToString() Perception</div>
+                    <div>@Wis.ToString() Survival</div>
+                </div>
+                                        
+                <div class="col-2">
+                    <input asp-for="Charisma" class="form-control big-input" min="1" max="20"/>
+                </div>
+                <div class="col-2 text-start">
+                    @{ Cha = CheckStat(Model.Charisma);}
+                    <div>@Cha.ToString() Saving Throws</div>
+                    <div>@Cha.ToString() Deception</div>
+                    <div>@Cha.ToString() Intimidation</div>
+                    <div>@Cha.ToString() Performance</div>
+                    <div>@Cha.ToString() Persuasion</div>
+                </div>
+            </div>
+            
+            <div class="row py-2">
+                <button class="btn" type="submit"> Submit Character</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@functions{
+
+    public int CheckStat(int stat)
+    {
+        if (stat == 20) return 5;
+        else if (stat >= 18) return 4;
+        else if (stat >= 16) return 3;
+        else if (stat >= 14) return 2;
+        else if (stat >= 12) return 1;
+        else if (stat == 0) return -5;
+        else if (stat <= 2) return -4;
+        else if (stat <= 4) return -3;
+        else if (stat <= 6) return -2;
+        else if (stat <= 8) return -1;
+        return 0;
+    }
+
+}

@@ -16,3 +16,29 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.special-div {
+  /*overflow: hidden;*/
+  position: relative;
+}
+
+.Level {
+  background-image: url(Images/CharacterBuilder/LevelLayer.png);
+}
+
+.special-img {
+  pointer-events: none;
+  position: absolute;
+  width: 50%;
+  height: 200%;
+  z-index: -1;
+}
+
+.med-input {
+  font-size: 25px;
+}
+
+.big-input {
+  font-size: 35px;
+}

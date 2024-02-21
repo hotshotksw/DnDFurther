@@ -44,18 +44,19 @@ namespace DnD_Further.Models
         public Races RaceType { get; set; }
         [Required, EnumDataType(typeof(Classes))]
         public Classes ClassType { get; set; }
+
+        [Required, Range(1, 20)] 
+        public int Strength { get; set; } = 10;
         [Required, Range(1, 20)]
-        public int Strength { get; set; }
+        public int Dexterity { get; set; } = 10;
         [Required, Range(1, 20)]
-        public int Dexterity { get; set; }
+        public int Constitution { get; set; } = 10;
         [Required, Range(1, 20)]
-        public int Constitution { get; set; }
+        public int Intelligence { get; set; } = 10;
         [Required, Range(1, 20)]
-        public int Intelligence { get; set; }
+        public int Wisdom { get; set; } = 10;
         [Required, Range(1, 20)]
-        public int Wisdom { get; set; }
-        [Required, Range(1, 20)]
-        public int Charisma { get; set; }
+        public int Charisma { get; set; } = 10;
 
         public Character() { }
 
