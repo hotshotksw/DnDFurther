@@ -9,5 +9,13 @@ namespace DnD_Further.Models
 
         [JsonProperty("desc")] // Specify the JSON property name
         public string[] Description { get; set; }
+        [JsonProperty("url")] // Specify the JSON property name
+        public string URL { get; set; }
+    }
+
+    public class SpellList
+    {
+        public int Count { get; set; }
+        public List<SpellModel> Results { get; set; }
     }
 }
