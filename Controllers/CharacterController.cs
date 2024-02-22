@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using DnD_Further.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 public class CharacterController : Controller
 {
@@ -26,7 +27,8 @@ public class CharacterController : Controller
         return View(dal.GetCharacters());
     }
 
-    [HttpGet]
+	[Authorize]
+	[HttpGet]
     public IActionResult TempCreator()
     {
         return View();
