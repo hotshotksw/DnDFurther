@@ -12,7 +12,7 @@ namespace DnD_Further.Models
             Gnome,
             Half_Elf,
             Half_Orc,
-            Halfing,
+            Halfling,
             Human,
             Tiefling
         }
