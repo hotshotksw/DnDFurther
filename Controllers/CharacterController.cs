@@ -94,13 +94,10 @@ public class CharacterController : Controller
         }
     }
 
-    public async Task<IActionResult> APITest(string className)
+    public async Task<IActionResult> GetClass(string className)
     {
-        // Specify the spell you want to retrieve, for example, "Barbarian"
-        string classNamed = "Barbarian";
-
         // Make GET request to fetch spell information
-        HttpResponseMessage response = await _httpClient.GetAsync($"Classes/{classNamed}");
+        HttpResponseMessage response = await _httpClient.GetAsync($"classes/{className}");
 
         if (response.IsSuccessStatusCode)
         {

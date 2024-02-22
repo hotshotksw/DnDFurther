@@ -1,19 +1,18 @@
-﻿@model DnD_Further.Models.ClassList
+﻿@model DnD_Further.Models.Class
 
 @{
     ViewData["Title"] = "Spell Details";
 }
 
-<head>
-    <title>Spells List</title>
-</head>
+<h2>@Model.Name</h2>
+<h3>@Model.Description</h3>
+
 <body>
-    <h1>List of Spells</h1>
-    <ul>
+@*     <ul>
         @foreach (Class classs in Model.Class)
         {
             <li>@classs.Name</li>
             <li>@classs.Description</li>
         }
-    </ul>
+    </ul> *@
 </body>
