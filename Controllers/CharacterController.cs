@@ -35,7 +35,6 @@ public class CharacterController : Controller
     [HttpPost]
     public IActionResult TempCreator(Character c)
     {
-
         if (ModelState.IsValid)
         {
             string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -105,11 +104,22 @@ public class CharacterController : Controller
         }
         return RedirectToAction("Creator");
     }
-    
-    
+
+    [HttpPost]
+    public IActionResult Search(string key)
+    {
+        if (string.IsNullOrEmpty(key))
+        {
+            return View("CharacterViewer", dal.GetCharacters());
+        }
+
+        return View("CharacterViewer", dal.GetCharacters()
+            .Where(x => x.Name!.ToLower().Contains(key.ToLower())));
+    }
+
     #region EDIT/DELETE/SEARCH FAKE FUNCTIONS
 
-    
+
 
     public IActionResult Edit()
     {
@@ -121,9 +131,6 @@ public class CharacterController : Controller
         return RedirectToAction("Index", "Home");
     }
     
-    public IActionResult Search()
-    {
-        return RedirectToAction("Index", "Home");
-    }
+    
     #endregion
 }

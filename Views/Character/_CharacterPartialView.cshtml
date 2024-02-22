@@ -1,5 +1,5 @@
 ﻿@model Character
-
+<link rel="stylesheet" type="text/css" href="styles.css" />
 
 @if (Model == null)
 {
@@ -7,30 +7,33 @@
 }
 else
 {
-	<div class="border p-3 mt-4 mb-4" style="background-color:lightgray;font-size:12px;">
-		<div class="row">
-			<div class="col col-6">
 
-				<div class="row mb-2">
+	<div class="border p-3 mt-4 mb-4" style="font-size:12px;width:400px;height:400px;background:border-box;background-image:url('/Images/Viewer/sign.png');background-size:100% 100%;">
+		<div class="row">
+			<div class="col" style="margin-left: auto; margin-right: auto; text-align:center;">
+
+				<div class="row mt-2 mb-1">
 					<div class="col col-6">
 						<a asp-controller="Character" asp-action="Edit" asp-route-id="@Model.Id"
-						   class="btn btn-secondary mx-2">
-							<i class="bi bi-wrench-adjustable-circle"></i> Edit
+						   class="btn btn-secondary mx-2 text-black" style="width:100px;height:40px;background:border-box;background-image:url('/Images/Viewer/sign.png');background-size:100% 100%;">
+							<i class="bi bi-wrench-adjustable-circle"></i> EDIT
 						</a>
 					</div>
 					<div class="col col-6">
 						<a asp-controller="Character" asp-action="Delete" asp-route-id="@Model.Id"
-						   class="btn btn-secondary mx-2">
-							<i class="bi bi-trash"></i> Delete
+						   class="btn btn-secondary mx-2 text-black" style="width:100px;height:40px;background:border-box;background-image:url('/Images/Viewer/sign.png');background-size:100% 100%;">
+							<i class="bi bi-trash"></i> DELETE
 						</a>
 					</div>
 				</div>
-
-				<h3>@Model.Name</h3>
-				<h3>@Model.RaceType</h3>
-				<h3>@Model.Strength || @Model.Dexterity</h3>
-				<h3>@Model.Constitution || @Model.Intelligence</h3>
-				<h3>@Model.Wisdom || @Model.Charisma</h3>
+				<div class="row mt-2">
+					<h1>@Model.Name!.ToUpper()</h1>
+					<h3>@Model.RaceType</h3>
+					<h3>STR: @Model.Strength || DEX: @Model.Dexterity</h3>
+					<h3>CONST: @Model.Constitution || INT @Model.Intelligence</h3>
+					<h3>WIS: @Model.Wisdom || CHAR: @Model.Charisma</h3>
+				</div>
+				
 			</div>
 		</div>
 	</div>
