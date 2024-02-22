@@ -137,6 +137,37 @@ public class CharacterController : Controller
         }
     }
 
+    public async Task<IActionResult> GetRace(string raceName)
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"races/{raceName}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            string json = await response.Content.ReadAsStringAsync();
+            var rac = JsonConvert.DeserializeObject<Class>(json);
+            return View(rac);
+        }
+        else
+        {
+            return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> GetRaceList()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"races");
+        if (response.IsSuccessStatusCode)
+        {
+            string json = await response.Content.ReadAsStringAsync();
+            var Races = JsonConvert.DeserializeObject<RaceList>(json);
+            return View(Races);
+        }
+        else
+        {
+            return View("Error");           
+        }
+    }
+
     public IActionResult ChangeStat(Character c, string statToChange, int amount)
     {
         switch (statToChange)
