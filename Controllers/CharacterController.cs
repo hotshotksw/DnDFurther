@@ -105,10 +105,13 @@ public class CharacterController : Controller
 		return RedirectToAction("CharacterViewer", "Character");
 	}
 
-	public IActionResult Edit()
+
+    public IActionResult Delete(int? id)
     {
-        return RedirectToAction("Index", "Home");
+        dal.RemoveCharacter(id);
+        return RedirectToAction("CharacterViewer", "Character");
     }
+
 
     public async Task<IActionResult> GetSpell()
     {
@@ -236,10 +239,7 @@ public class CharacterController : Controller
 
     
     
-    public IActionResult Delete()
-    {
-        return RedirectToAction("Index", "Home");
-    }
+    
     
     
     #endregion
