@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using DnD_Further.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 public class CharacterController : Controller
 {
@@ -26,7 +27,8 @@ public class CharacterController : Controller
         return View(dal.GetCharacters());
     }
 
-    [HttpGet]
+	[Authorize]
+	[HttpGet]
     public IActionResult TempCreator()
     {
         return View();
@@ -75,14 +77,13 @@ public class CharacterController : Controller
         string spellName = "acid-arrow";
 
         // Make GET request to fetch spell information
-        HttpResponseMessage response = await _httpClient.GetAsync($"spells/{spellName}");
+        HttpResponseMessage response = await _httpClient.GetAsync($"spells");
 
         if (response.IsSuccessStatusCode)
         {
             // Deserialize the response content to your model
             string json = await response.Content.ReadAsStringAsync();
-            var spell = JsonConvert.DeserializeObject<SpellModel>(json);
-
+            var spell = JsonConvert.DeserializeObject<SpellList>(json);
             // Now 'spell' contains information about the specified spell
             // You can pass 'spell' to your view or do further processing
             return View(spell);
@@ -91,6 +92,79 @@ public class CharacterController : Controller
         {
             // Handle error here
             return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> GetClass(string className)
+    {
+        // Make GET request to fetch spell information
+        HttpResponseMessage response = await _httpClient.GetAsync($"classes/{className}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Deserialize the response content to your model
+            string json = await response.Content.ReadAsStringAsync();
+            var clas = JsonConvert.DeserializeObject<Class>(json);
+            // Now 'spell' contains information about the specified spell
+            // You can pass 'spell' to your view or do further processing
+            return View(clas);
+        }
+        else
+        {
+            // Handle error here
+            return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> GetClassList()
+    {
+        // Make GET request to fetch spell information
+        HttpResponseMessage response = await _httpClient.GetAsync($"classes");
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Deserialize the response content to your model
+            string json = await response.Content.ReadAsStringAsync();
+            var Classes = JsonConvert.DeserializeObject<ClassList>(json);
+            // Now 'spell' contains information about the specified spell
+            // You can pass 'spell' to your view or do further processing
+            return View(Classes);
+        }
+        else
+        {
+            // Handle error here
+            return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> GetRace(string raceName)
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"races/{raceName}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            string json = await response.Content.ReadAsStringAsync();
+            var rac = JsonConvert.DeserializeObject<Class>(json);
+            return View(rac);
+        }
+        else
+        {
+            return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> GetRaceList()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"races");
+        if (response.IsSuccessStatusCode)
+        {
+            string json = await response.Content.ReadAsStringAsync();
+            var Races = JsonConvert.DeserializeObject<RaceList>(json);
+            return View(Races);
+        }
+        else
+        {
+            return View("Error");           
         }
     }
 
