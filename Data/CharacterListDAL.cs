@@ -43,6 +43,7 @@ namespace DnD_Further.Data
         public void UpdateCharacter(Character Character)
         {
             db.Characters.Update(Character);
+            db.SaveChanges();
         }
 
         public IEnumerable<Character> FilterCharacters(string? name)

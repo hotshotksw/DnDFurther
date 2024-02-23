@@ -70,7 +70,46 @@ public class CharacterController : Controller
 
         return View(c);
     }
-    
+
+    [HttpGet]
+    public IActionResult Edit(int? id)
+    {
+		if (id == null)
+		{
+			ViewData["Error"] = "Character id not given.";
+			return View();
+		}
+
+		Character? c = dal.GetCharacter(id);
+		if (c == null)
+		{
+			ViewData["Error"] = "Character id not found";
+			return View();
+		}
+
+		//checks if user owns game, if not it doesn't load the game
+		if (c.UserID != User.FindFirstValue(ClaimTypes.NameIdentifier)) //needs System.Security.Claims
+		{
+			ViewData["Error"] = "You do not own this Character";
+			return View();
+		}
+
+		return View(c);
+	}
+
+	[HttpPost]
+	public IActionResult Edit(Character c)
+	{
+		dal.UpdateCharacter(c);
+		TempData["Success"] = "Character updated";
+		return RedirectToAction("CharacterViewer", "Character");
+	}
+
+	public IActionResult Edit()
+    {
+        return RedirectToAction("Index", "Home");
+    }
+
     public async Task<IActionResult> GetSpell()
     {
         // Specify the spell you want to retrieve, for example, "acid-arrow"
@@ -191,14 +230,11 @@ public class CharacterController : Controller
             .Where(x => x.Name!.ToLower().Contains(key.ToLower())));
     }
 
-    #region EDIT/DELETE/SEARCH FAKE FUNCTIONS
+    #region EDIT/DELETE FAKE FUNCTIONS
 
 
 
-    public IActionResult Edit()
-    {
-        return RedirectToAction("Index", "Home");
-    }
+    
     
     public IActionResult Delete()
     {
