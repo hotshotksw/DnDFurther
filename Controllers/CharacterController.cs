@@ -24,28 +24,29 @@ public class CharacterController : Controller
 
     public IActionResult CharacterViewer()
     {
+        dal.CheckEditable(User.FindFirstValue(ClaimTypes.NameIdentifier));
         return View(dal.GetCharacters());
     }
 
-	[Authorize]
-	[HttpGet]
-    public IActionResult TempCreator()
-    {
-        return View();
-    }
+	//[Authorize]
+	//[HttpGet]
+ //   public IActionResult TempCreator()
+ //   {
+ //       return View();
+ //   }
 
-    [HttpPost]
-    public IActionResult TempCreator(Character c)
-    {
-        if (ModelState.IsValid)
-        {
-            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            dal.AddCharacter(c, userID);
-            return RedirectToAction("CharacterViewer", "Character");
-        }
+ //   [HttpPost]
+ //   public IActionResult TempCreator(Character c)
+ //   {
+ //       if (ModelState.IsValid)
+ //       {
+ //           string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+ //           dal.AddCharacter(c, userID);
+ //           return RedirectToAction("CharacterViewer", "Character");
+ //       }
 
-        return View();
-    }
+ //       return View();
+ //   }
 
     [HttpGet]
     public IActionResult Creator()
@@ -100,8 +101,9 @@ public class CharacterController : Controller
 	[HttpPost]
 	public IActionResult Edit(Character c)
 	{
-		dal.UpdateCharacter(c);
+		dal.UpdateCharacter(c, User.FindFirstValue(ClaimTypes.NameIdentifier));
 		TempData["Success"] = "Character updated";
+		dal.CheckEditable(User.FindFirstValue(ClaimTypes.NameIdentifier));
 		return RedirectToAction("CharacterViewer", "Character");
 	}
 
@@ -109,7 +111,8 @@ public class CharacterController : Controller
     public IActionResult Delete(int? id)
     {
         dal.RemoveCharacter(id);
-        return RedirectToAction("CharacterViewer", "Character");
+		dal.CheckEditable(User.FindFirstValue(ClaimTypes.NameIdentifier));
+		return RedirectToAction("CharacterViewer", "Character");
     }
 
 

@@ -8,8 +8,9 @@ namespace DnD_Further.Interfaces
         void AddCharacter(Character character, string userID);
         void RemoveCharacter(int? id);
         Character? GetCharacter(int? id);
-        void UpdateCharacter(Character character);
-
+        void UpdateCharacter(Character character, string userID);
+        void CheckEditable(string userID);
+        IEnumerable<Character>? GetCharactersByUser(string userID);
         IEnumerable<Character> FilterCharacters(string? name);
     }
 }

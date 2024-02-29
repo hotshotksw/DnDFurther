@@ -58,6 +58,8 @@ namespace DnD_Further.Models
         [Required, Range(1, 20)]
         public int Charisma { get; set; } = 10;
 
+        public bool editable;
+
         public Character() { }
 
         public Character(string name, Races race, Classes classes, int str, int dex, int con, int intl, int wis, int cha)

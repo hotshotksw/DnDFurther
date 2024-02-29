@@ -40,9 +40,10 @@ namespace DnD_Further.Data
             return db.Characters;
         }
 
-        public void UpdateCharacter(Character Character)
+        public void UpdateCharacter(Character Character, string userID)
         {
-            db.Characters.Update(Character);
+			Character.UserID = userID;
+			db.Characters.Update(Character);
             db.SaveChanges();
         }
 
@@ -64,5 +65,25 @@ namespace DnD_Further.Data
 
             return lstCharactersByName;
         }
-    }
+
+		public IEnumerable<Character>? GetCharactersByUser(string userID)
+		{
+			return db.Characters.Where(x => x.UserID == userID);
+		}
+
+		public void CheckEditable(string? userID)
+		{
+			foreach (Character c in db.Characters)
+            {
+                if (c.UserID == userID)
+                {
+                    c.editable = true;
+                }
+                else
+                {
+                    c.editable = false;
+                }
+            }
+		}
+	}
 }
