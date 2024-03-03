@@ -28,26 +28,27 @@ public class CharacterController : Controller
         return View(dal.GetCharacters());
     }
 
-	//[Authorize]
-	//[HttpGet]
- //   public IActionResult TempCreator()
- //   {
- //       return View();
- //   }
+    //[Authorize]
+    //[HttpGet]
+    //   public IActionResult TempCreator()
+    //   {
+    //       return View();
+    //   }
 
- //   [HttpPost]
- //   public IActionResult TempCreator(Character c)
- //   {
- //       if (ModelState.IsValid)
- //       {
- //           string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
- //           dal.AddCharacter(c, userID);
- //           return RedirectToAction("CharacterViewer", "Character");
- //       }
+    //   [HttpPost]
+    //   public IActionResult TempCreator(Character c)
+    //   {
+    //       if (ModelState.IsValid)
+    //       {
+    //           string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //           dal.AddCharacter(c, userID);
+    //           return RedirectToAction("CharacterViewer", "Character");
+    //       }
 
- //       return View();
- //   }
+    //       return View();
+    //   }
 
+    [Authorize]
     [HttpGet]
     public IActionResult Creator()
     {

@@ -10,16 +10,16 @@
  int Cha = 0;
 }
 
-<form asp-controller="Character" asp-action="Creator" method="post">
+<form asp-controller="Character" asp-action="Creator" method="post" class="creatorBackground">
 
-    <div class="row">
-        <div class="col-4 align-content-start">
+    <div class="row creatorBody" style="">
+        <div class="col-3 align-content-start" style="margin-top: 35%;">
             @* this is where the character picture goes *@
             <img src="~/Images/CharacterBuilder/PlaceholdCharacter.jpg" height="600"/>
 
         </div>
 
-        <div class="col-8 text-center">
+        <div class="col-9 text-center" style="margin-top: 25%;">
             @* This is where all the stuff on the right goes *@
             <div class="row py-4">
                 <div class="col-4 text-center">
