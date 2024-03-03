@@ -10,26 +10,28 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DnDFurther</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse myNav">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between align-content-center">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light navBox" asp-area="" asp-controller="Home" asp-action="Index"><pre></pre>HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Character" asp-action="APITest">API Test</a>
+                            <a class="nav-link text-light navBox" asp-area="" asp-controller="Character" asp-action="APITest"><pre></pre>API Test</a>
+                        </li>
+                        <li>
+                            <a class="nav-link navTitle text-light" asp-area="" asp-controller="Home" asp-action="Index"><pre> </pre>D&D FURTHER</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Character" asp-action="CharacterViewer">THE PLANES</a>
+                            <a class="nav-link text-light navBox" asp-area="" asp-controller="Character" asp-action="CharacterViewer"><pre></pre>PLANES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Character" asp-action="Creator">Creator</a>
+                            <a class="nav-link text-light navBox" asp-area="" asp-controller="Character" asp-action="Creator"><pre></pre>CREATOR</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -39,12 +41,12 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" >
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-bottom footer text-muted">
         <div class="container">
             &copy; 2024 - DnD_Further - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
