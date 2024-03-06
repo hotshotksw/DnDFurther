@@ -24,21 +24,21 @@
             <div class="row py-4" style="margin-left: -15%;">
                 <div class="col-4 text-center">
                     <label style="background:border-box; width:100px; height:100px; background-image: url('/Images/CharacterBuilder/LevelLayer.png'); background-size:100% 100%;"/>
-                    <h1 style="font-size:40px;padding-right: 25%; padding-top: 25%;">1</h1>
+                    <h1 class="text-black" style="font-size:40px;padding-right: 25%; padding-top: 25%;">1</h1>
                 </div>
-                <div class="col-4" style="margin-top:6%;margin-left: -2%;padding-top: -5%;background:center center; width:400px; height:100px;background-image: url('/Images/CharacterBuilder/NameLayer.png');background-size: 80% 250%;background-repeat:no-repeat;background-position: -25% 75%;">
+                <div class="col-4" style="margin-top:6%;margin-left: -2%;padding-top: -5%;background:center center; width:400px; height:100px;background-image: url('/Images/CharacterBuilder/NameLayer.png');background-size: 90% 250%;background-repeat:no-repeat;background-position: -50% 75%;">
                     <input class="form-control med-input" asp-for="Name" placeholder="Name" title="Put your character name here" style="background:none;"/>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
 
 
-            <div class="row py-3">
-                <div class="col-4 text-center">
-                    <select class="med-input text-center" asp-for="RaceType" asp-items="Html.GetEnumSelectList<Character.Races>()" style="background:border-box; background-image: url('/Images/CharacterBuilder/RaceLayer.png'); background-size: 100% 400%;background-position-y: 45%;">
-                        <option selected="selected" value="">Please select race</option>
-                    </select>
-                    <span asp-validation-for="RaceType" class="text-danger"></span>
+            <div class="row py-3" style="margin-top: -5%;">
+                <div class="col-4 text-center" >
+                    <select class="med-input text-center" input text-center" asp-for="RaceType" asp-items="Html.GetEnumSelectList<Character.Races>()" style="background:border-box; background-image: url('/Images/CharacterBuilder/RaceLayer.png'); background-size: 100% 400%;background-position-y: 45%;">
+						<option selected="selected" value="">Please select race</option>
+					</select>
+					<span asp-validaclass="med-tion-for=" RaceType" class="text-danger"></span>
                 </div>
                 <div class="col-4 text-center">
                     <select class="med-input text-center" asp-for="ClassType" asp-items="Html.GetEnumSelectList<Character.Classes>()" style="background:border-box; background-image: url('/Images/CharacterBuilder/RaceLayer.png'); background-size: 100% 400%;background-position-y: 45%;">
@@ -88,7 +88,7 @@
             
             
             <div class="row py-2">
-                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/StrengthLayer.png'); background-size: 100% 150%;background-position-y: 70%;">
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/ConstitutionLayer.png'); background-size: 100% 200%;background-position-y: 62%;">
                     <div class="row">
                         <div class="col-6 text-start" style="margin-top: 5%;margin-left: 5%; width: 45%;">
                             <input asp-for="Constitution" class="form-control big-input" style="background:none;" min="1" max="20" />
@@ -102,51 +102,68 @@
                     </div>
                 </div>
 
-                
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/IntelligenceLayer.png'); background-size: 100% 200%;background-position-y: 55%;">
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 45%;">
+                            <input asp-for="Intelligence" class="form-control big-input" style="background:none;" min="1" max="20" />
+                        </div>
+                        <div class="col-6 text-start">
+                            @{
+                                Int = CheckStat(Model.Intelligence);
+                            }
+                            <div>@Int.ToString() Saving Throws</div>
+                            <div>@Int.ToString() Arcana</div>
+                            <div>@Int.ToString() History</div>
+                            <div>@Int.ToString() Nature</div>
+                            <div>@Int.ToString() Religion</div>
+                        </div>
+                    </div>
+                </div>
                             
-                <div class="col-2">
-                    <input asp-for="Intelligence" class="form-control big-input" min="1" max="20"/>
-                </div>
-                <div class="col-2 text-start">
-                    @{ Int = CheckStat(Model.Intelligence);}
-                    <div>@Int.ToString() Saving Throws</div>
-                    <div>@Int.ToString() Arcana</div>
-                    <div>@Int.ToString() History</div>
-                    <div>@Int.ToString() Investigation</div>
-                    <div>@Int.ToString() Nature</div>
-                    <div>@Int.ToString() Religion</div>
-                </div>
+                
             </div>
             
             <div class="row py-2">
-                <div class="col-2">
-                    <input asp-for="Wisdom" class="form-control big-input" min="1" max="20"/>
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/WisdomLayer.png'); background-size: 100% 160%;background-position-y: 65%;">
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 45%;">
+                            <input asp-for="Wisdom" class="form-control big-input" style="background:none;margin-top:25%;" min="1" max="20" />
+                        </div>
+                        <div class="col-6 text-start">
+                            @{
+                                Wis = CheckStat(Model.Wisdom);
+                            }
+                            <div>@Wis.ToString() Saving Throws</div>
+                            <div>@Wis.ToString() Animal Handling</div>
+                            <div>@Wis.ToString() Insight</div>
+                            <div>@Wis.ToString() Perception</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-2 text-start">
-                    @{ Wis = CheckStat(Model.Wisdom);}
-                    <div>@Wis.ToString() Saving Throws</div>
-                    <div>@Wis.ToString() Animal Handling</div>
-                    <div>@Wis.ToString() Insight</div>
-                    <div>@Wis.ToString() Medicine</div>
-                    <div>@Wis.ToString() Perception</div>
-                    <div>@Wis.ToString() Survival</div>
+                
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/CharismaLayer.png'); background-size: 100% 200%;background-position-y: 57%;">
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 45%;">
+                            <input asp-for="Charisma" class="form-control big-input" style="background:none;margin-top:25%;" min="1" max="20" />
+                        </div>
+                        <div class="col-6 text-start">
+                            @{
+                                Cha = CheckStat(Model.Charisma);
+                            }
+                            <div>@Cha.ToString() Saving Throws</div>
+                            <div>@Cha.ToString() Deception</div>
+                            <div>@Cha.ToString() Intimidation</div>
+                            <div>@Cha.ToString() Performance</div>
+                            <div>@Cha.ToString() Persuasion</div>
+                        </div>
+                    </div>
                 </div>
-                                        
-                <div class="col-2">
-                    <input asp-for="Charisma" class="form-control big-input" min="1" max="20"/>
-                </div>
-                <div class="col-2 text-start">
-                    @{ Cha = CheckStat(Model.Charisma);}
-                    <div>@Cha.ToString() Saving Throws</div>
-                    <div>@Cha.ToString() Deception</div>
-                    <div>@Cha.ToString() Intimidation</div>
-                    <div>@Cha.ToString() Performance</div>
-                    <div>@Cha.ToString() Persuasion</div>
-                </div>
+                
+                
             </div>
             
             <div class="row py-2">
-                <button class="btn" type="submit"> Submit Character</button>
+                <button class="btn" style="background-color:lightgray;margin-left:-15%;" type="submit"> Submit Character</button>
             </div>
         </div>
     </div>

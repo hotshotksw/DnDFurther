@@ -19,25 +19,25 @@ body {
 
 p {
     font-family: 'Footlight MT';
-    color: black;
+    color: antiquewhite;
 }
 
 .stupidHeaders {
     font-family: 'Footlight MT';
-    color: black;
+    color: antiquewhite;
     font-size: 40px;
 }
 
 .stupidHeader1 {
     font-family: 'Footlight MT';
-    color: black;
+    color: antiquewhite;
     font-size: 60px;
 }
 
 
 :is(h1,h2,h3,h4,h5,h6) {
     font-family: 'Footlight MT';
-    color:black;
+    color: antiquewhite;
 }
 
 .special-div {
