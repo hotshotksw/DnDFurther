@@ -1,0 +1,104 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+
+.special-div {
+  /*overflow: hidden;*/
+  position: relative;
+}
+
+.Level {
+  background-image: url(Images/CharacterBuilder/LevelLayer.png);
+}
+
+.special-img {
+  pointer-events: none;
+  position: absolute;
+  width: 50%;
+  height: 200%;
+  z-index: -1;
+}
+
+.med-input {
+  font-size: 25px;
+}
+
+.big-input {
+  font-size: 35px;
+}
+
+.mainBody {
+    margin-left:-175px;
+    background-image: url("../Images/Viewer/SsMainPageRedo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:top center;
+    width:100vw;
+    height:125vh;
+}
+
+.navBox {
+    background-image: url("../Images/Viewer/newSign.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: -10px;
+    width: 14vw;
+    height: 16vh;
+    background-position: bottom center;
+    align-content: center;
+    text-align: center;
+    font-size: 50px;
+}
+
+.navTitle {
+    background-image: url("../Images/Viewer/newSign.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top:-20px;
+    width: 28vw;
+    height: 30vh;
+    background-position: bottom center;
+    align-content: center;
+    text-align: center;
+    font-size: 54px;
+}
+
+.myNav {
+    position: fixed;
+    padding-bottom:50px;
+    top: 9px;
+    left: 0%;
+    right: 0;
+}
+
+.creatorBody {
+    margin-left: 20vw;
+}
+
+.creatorText {
+    margin-left: 1vw;
+}
+
+.book {
+    position: relative;
+    left: 800px;
+    top: 325px;
+    width: 100px;
+    height: 650px;
+}
