@@ -1,0 +1,14 @@
+﻿@model DnD_Further.Models.SpellList
+
+@{
+    ViewData["Title"] = "Class Details";
+}
+
+<body>
+    <ul class="text-secondary" style="margin-top: 10%">
+        @foreach (SpellModel spell in Model.Results)
+        {
+            <li>@spell.Name</li>
+        }
+    </ul>
+</body>
