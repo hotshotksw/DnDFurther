@@ -102,3 +102,13 @@ body {
     width: 100px;
     height: 650px;
 }
+
+.centerBook {
+    position: relative;
+    left: 0px;
+    top: 230px;
+    width: 100px;
+    height: 650px;
+    color:burlywood;
+    font-size: 24px;
+}
