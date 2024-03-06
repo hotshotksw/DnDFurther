@@ -51,7 +51,7 @@
             <div class="row py-2" oninput="">
                 <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/StrengthLayer.png'); background-size: 100% 200%;background-position-y: 45%;">
                     <div class="row">
-                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 40%;">
+                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 45%;">
                             <input asp-for="Strength" class="form-control big-input" style="background:none;" min="1" max="20" oninput="@{
                             Str = CheckStat(Model.Strength);
 }" />
@@ -68,28 +68,41 @@
                     </div>
                 </div>
                 
-                
-                <div class="col-2">
-                    <input asp-for="Dexterity" class="form-control big-input" min="1" max="20"/>
-                </div>
-                <div class="col-2 text-start">
-                    @{ Dex = CheckStat(Model.Dexterity); }
-                    <div>@Dex.ToString() Saving Throws</div>
-                    <div>@Dex.ToString() Acrobatics</div>
-                    <div>@Dex.ToString() Sleight of Hand</div>
-                    <div>@Dex.ToString() Stealth</div>
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/DexterityLayer.png'); background-size: 100% 200%;background-position-y: 57%;">
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 5%;margin-left: 5%; width: 45%;">
+                            <input asp-for="Dexterity" class="form-control big-input" style="background:none;" min="1" max="20" />
+                        </div>
+                        <div class="col-6 text-start">
+                            @{
+                                Dex = CheckStat(Model.Dexterity);
+                            }
+                            <div>@Dex.ToString() Saving Throws</div>
+                            <div>@Dex.ToString() Acrobatics</div>
+                            <div>@Dex.ToString() Sleight of Hand</div>
+                            <div>@Dex.ToString() Stealth</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             
             <div class="row py-2">
-                <div class="col-2 text-start">
-                    <input asp-for="Constitution" class="form-control big-input" min="1" max="20"/>
+                <div class="col-4" style="background:border-box; background-image: url('/Images/CharacterBuilder/StrengthLayer.png'); background-size: 100% 150%;background-position-y: 70%;">
+                    <div class="row">
+                        <div class="col-6 text-start" style="margin-top: 5%;margin-left: 5%; width: 45%;">
+                            <input asp-for="Constitution" class="form-control big-input" style="background:none;" min="1" max="20" />
+                        </div>
+                        <div class="col-6">
+                            @{
+                                Con = CheckStat(Model.Constitution);
+                            }
+                            <div>@Con.ToString() Saving Throws</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-2">
-                    @{ Con = CheckStat(Model.Constitution);}
-                    <div>@Con.ToString() Saving Throws</div>
-                </div>
+
+                
                             
                 <div class="col-2">
                     <input asp-for="Intelligence" class="form-control big-input" min="1" max="20"/>
